@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/asser/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.1.1/support-annotations-24.1.1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.1.1_8cacde0f5fc878de0bb26a85729f3fd2f13da7b2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="712d9676088d24ca2dd0ae990dc2685d74697eb5">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5c6eeea7b89719e2eb2aca05fd77b073c0db9712/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="7176ad91bca0e68de04e2bf9b968f56db9b2eec1">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_b3f034970e3909e77b4f92a691e989a649393b1d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/libs/internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.1.1_ec1a7a3d2c279ed42cd224d84bc95a354b753ba0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.1.1_1b48eb38c2d7022fa82beaabea8c28d33fedca0e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="787871951412550519b0222aba3c9df4cea49875">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.1.1_b5c5a8ce853b5238a588f07a6a8b16cfe51679de/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.1.1_cb6a258db56a0dfae5feef974c02da493b44c69d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.1.1_9a98fcd5013a9a763e8b0efb4e322a99e23637c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="24.0.1"
+        sha1="6d7d803871e3203465f71a163e7af104f807b446">
+        <dex dex="/Users/asser/GitHub/Q-Up/final_stage/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.1.1_5439cb77c2fd9c81245a99c1285b77e2698f44fc/classes.dex" />
+    </item>
+
+</items>
