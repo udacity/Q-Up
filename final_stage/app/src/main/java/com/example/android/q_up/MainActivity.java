@@ -71,23 +71,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         // Make sure we close the cursor and db when the app is not being used
         cursorAdapter.swapCursor(null);
         if (db != null) {
             db.close();
             db = null;
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Get a new db if previous one was closed
-        if (db == null)
-            db = dbHelper.getWritableDatabase();
-        cursorAdapter.swapCursor(getAllNames());
     }
 
     /**
