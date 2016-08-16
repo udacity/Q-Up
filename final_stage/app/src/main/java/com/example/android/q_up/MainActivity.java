@@ -18,12 +18,14 @@ import com.example.android.q_up.data.QueueDbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView allGuestsListView;
-    private EditText newGuestNameView;
-    private EditText newPartyCountView;
-    private GuestListAdapter cursorAdapter;
-    private QueueDbHelper dbHelper;
-    private SQLiteDatabase db;
+    private RecyclerView mAllGuestsListView;
+    private EditText mNewGuestNameEditText;
+    private EditText mNewPartyCountEditText;
+    private GuestListAdapter mCursorAdapter;
+    private QueueDbHelper mDbHelper;
+    private SQLiteDatabase mDb;
+
+    private final static String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,29 +33,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Set local attributes to corresponding views
-        allGuestsListView = (RecyclerView) this.findViewById(R.id.all_guests_list);
-        newGuestNameView = (EditText) this.findViewById(R.id.person_name_text);
-        newPartyCountView = (EditText) this.findViewById(R.id.party_count_text);
+        mAllGuestsListView = (RecyclerView) this.findViewById(R.id.all_guests_list_view);
+        mNewGuestNameEditText = (EditText) this.findViewById(R.id.person_name_edit_text);
+        mNewPartyCountEditText = (EditText) this.findViewById(R.id.party_count_edit_text);
 
-        // Set layout for the recyclerview, because it's a list we are using the linear layout
-        allGuestsListView.setLayoutManager(new LinearLayoutManager(this));
+        // Set layout for the RecyclerView, because it's a list we are using the linear layout
+        mAllGuestsListView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create a DB helper (this will create the DB if run for the first time)
-        dbHelper = new QueueDbHelper(this);
+        mDbHelper = new QueueDbHelper(this);
 
-        // Keep a reference to the db until paused or killed
-        db = dbHelper.getWritableDatabase();
+        // Keep a reference to the mDb until paused or killed. Get a writeable database
+        // because you will be adding restaurant customers
+        mDb = mDbHelper.getWritableDatabase();
 
         // Get all guest info from the database and save in a cursor
         Cursor cursor = getAllNames();
 
         // Create an adapter for that cursor to display the data
-        cursorAdapter = new GuestListAdapter(this, cursor);
+        mCursorAdapter = new GuestListAdapter(this, cursor);
 
-        // Link the adapter to the recyclerview
-        allGuestsListView.setAdapter(cursorAdapter);
+        // Link the adapter to the RecyclerView
+        mAllGuestsListView.setAdapter(mCursorAdapter);
 
-        // Add a touch helper to the recyclerview to handle swiping names off the db
+        // Add a touch helper to the RecyclerView to handle swiping names off the mDb
+        // TODO Since they're not explicitly being taught this (at least I don't think?) add
+        // more comments here for the curious student or links to docs
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -64,20 +69,20 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 long myId = (long) viewHolder.itemView.getTag();
                 removePerson(myId);
-                cursorAdapter.swapCursor(getAllNames());
+                mCursorAdapter.swapCursor(getAllNames());
             }
-        }).attachToRecyclerView(allGuestsListView);
+        }).attachToRecyclerView(mAllGuestsListView);
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Make sure we close the cursor and db when the app is not being used
-        cursorAdapter.swapCursor(null);
-        if (db != null) {
-            db.close();
-            db = null;
+        // Make sure we close the cursor and mDb when the app is not being used
+        mCursorAdapter.swapCursor(null);
+        if (mDb != null) {
+            mDb.close();
+            mDb = null;
         }
     }
 
@@ -88,39 +93,40 @@ public class MainActivity extends AppCompatActivity {
      */
     public void addToQ(View view) {
         //check for empty values first
-        if (newGuestNameView.getText().length() == 0 || newPartyCountView.getText().length() == 0)
+        if (mNewGuestNameEditText.getText().length() == 0 ||
+            mNewPartyCountEditText.getText().length() == 0) {
             return;
-
+        }
         //default party count to 1
-        int party = 1;
+        int partySize = 1;
         try {
-            //newPartyCountView inputType="number", so this should always work
-            party = Integer.parseInt(newPartyCountView.getText().toString());
+            //mNewPartyCountEditText inputType="number", so this should always work
+            partySize = Integer.parseInt(mNewPartyCountEditText.getText().toString());
         } catch (NumberFormatException ex) {
-            Log.e("addToQ format error", "Failed to parse party text to number" + ex.getMessage());
+            Log.e(LOG_TAG, "Failed to parse party size text to number" + ex.getMessage());
         }
 
-        // Add guest info to db
-        addNewPerson(newGuestNameView.getText().toString(), party);
+        // Add guest info to mDb
+        addNewPerson(mNewGuestNameEditText.getText().toString(), partySize);
 
         // Update the cursor in the adapter to trigger UI to display the new list
-        cursorAdapter.swapCursor(getAllNames());
+        mCursorAdapter.swapCursor(getAllNames());
 
         //clear UI text fields
-        newPartyCountView.clearFocus();
-        newGuestNameView.getText().clear();
-        newPartyCountView.getText().clear();
+        mNewPartyCountEditText.clearFocus();
+        mNewGuestNameEditText.getText().clear();
+        mNewPartyCountEditText.getText().clear();
 
     }
 
 
     /**
-     * Query the db and get all geusts from the queue table
+     * Query the mDb and get all geusts from the queue table
      *
      * @return Cursor containing the list of guests
      */
     public Cursor getAllNames() {
-        return db.query(
+        return mDb.query(
                 QueueContract.QueueEntry.TABLE_NAME,
                 QueueContract.ALL_GUESTS_LIST_PROJECTION,
                 null,
@@ -132,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Adds a new guest to the db including the party count and the current timestamp
+     * Adds a new guest to the mDb including the party count and the current timestamp
      *
      * @param name  Guest's name
      * @param party Number in party
@@ -141,8 +147,8 @@ public class MainActivity extends AppCompatActivity {
     public long addNewPerson(String name, int party) {
         ContentValues cv = new ContentValues();
         cv.put(QueueContract.QueueEntry.COLUMN_NAME, name);
-        cv.put(QueueContract.QueueEntry.COLUMN_PARTY, party);
-        return db.insert(QueueContract.QueueEntry.TABLE_NAME, null, cv);
+        cv.put(QueueContract.QueueEntry.COLUMN_PARTY_SIZE, party);
+        return mDb.insert(QueueContract.QueueEntry.TABLE_NAME, null, cv);
     }
 
     /**
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
      * @return True: if removed successfully, False: if failed
      */
     public boolean removePerson(long id) {
-        return db.delete(QueueContract.QueueEntry.TABLE_NAME, QueueContract.QueueEntry._ID + "=" + id, null) > 0;
+        return mDb.delete(QueueContract.QueueEntry.TABLE_NAME, QueueContract.QueueEntry._ID + "=" + id, null) > 0;
     }
 
 }

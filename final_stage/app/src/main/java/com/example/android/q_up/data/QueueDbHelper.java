@@ -26,7 +26,7 @@ public class QueueDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_QUEUE_TABLE = "CREATE TABLE " + QueueEntry.TABLE_NAME + " (" +
                 QueueEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 QueueEntry.COLUMN_NAME + " TEXT NOT NULL, " +
-                QueueEntry.COLUMN_PARTY + " INTEGER NOT NULL, " +
+                QueueEntry.COLUMN_PARTY_SIZE + " INTEGER NOT NULL, " +
                 QueueEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                 "); ";
 
@@ -35,8 +35,10 @@ public class QueueDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        // For now simply drop the table and create a new one
-        // This should be modified to Alter the table in new versions if old data is to be supported
+        // For now simply drop the table and create a new one. This means if you change the
+        // DATABASE_VERSION the table will be dropped.
+        // In a production app, this method might be modified to ALTER the table
+        // instead of dropping it, so that exisiting data is not deleted.
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + QueueEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }

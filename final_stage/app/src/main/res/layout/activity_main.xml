@@ -9,13 +9,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.q_up.MainActivity">
-
+    <!-- TODO Checkout the sizing and styling from here: https://material.google.com/style/typography.html#typography-styles -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- TODO I like naming the id's with the type of object, ie person_name_edit_text -->
         <EditText
-            android:id="@+id/person_name_text"
+            android:id="@+id/person_name_edit_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,20 +24,22 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/name_hint"
-            android:inputType="text"
+            android:inputType="textPersonName|textCapWords"
             android:textSize="35sp" />
-
+        <!-- TODO I changed this to capitalize the words -->
         <EditText
-            android:id="@+id/party_count_text"
+            android:id="@+id/party_count_edit_text"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="@string/party_hint"
+            android:hint="@string/party_size_hint"
             android:inputType="number"
             android:textSize="35sp" />
-
+            <!-- TODO when I first opened the app without any explanation,
+            I wasn't sure what the number 0 was all about. Maybe there's a better
+            way to hint at what's going on in the UI!-->
     </LinearLayout>
 
 
@@ -51,7 +54,7 @@
         android:textSize="20sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/all_guests_list"
+        android:id="@+id/all_guests_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

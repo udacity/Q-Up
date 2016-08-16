@@ -5,7 +5,7 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:orientation="horizontal">
-
+<!-- TODO Checkout the sizing and styling from here: https://material.google.com/style/typography.html#typography-styles -->
     <TextView
         android:id="@+id/name_text_view"
         android:layout_width="0dp"
@@ -18,7 +18,7 @@
         tools:text="TextView" />
 
     <TextView
-        android:id="@+id/party_text_view"
+        android:id="@+id/party_size_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"

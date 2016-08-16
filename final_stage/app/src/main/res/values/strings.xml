@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Q-Up</string>
     <string name="name_hint">Name</string>
-    <string name="party_hint">0</string>
+    <string name="party_size_hint">0</string>
     <string name="add">Add</string>
     <string name="party_display">(%d)</string>
 </resources>

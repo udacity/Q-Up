@@ -52,7 +52,7 @@ public class TestDb extends AndroidTestCase {
         final HashSet<String> columnHashSet = new HashSet<String>();
         columnHashSet.add(QueueContract.QueueEntry._ID);
         columnHashSet.add(QueueContract.QueueEntry.COLUMN_NAME);
-        columnHashSet.add(QueueContract.QueueEntry.COLUMN_PARTY);
+        columnHashSet.add(QueueContract.QueueEntry.COLUMN_PARTY_SIZE);
 
         int columnNameIndex = c.getColumnIndex("name");
         do {
