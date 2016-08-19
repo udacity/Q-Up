@@ -141,13 +141,13 @@ public class MainActivity extends AppCompatActivity {
      * Adds a new guest to the mDb including the party count and the current timestamp
      *
      * @param name  Guest's name
-     * @param party Number in party
+     * @param partySize Number in party
      * @return id of new record added
      */
-    public long addNewPerson(String name, int party) {
+    public long addNewPerson(String name, int partySize) {
         ContentValues cv = new ContentValues();
         cv.put(QueueContract.QueueEntry.COLUMN_NAME, name);
-        cv.put(QueueContract.QueueEntry.COLUMN_PARTY_SIZE, party);
+        cv.put(QueueContract.QueueEntry.COLUMN_PARTY_SIZE, partySize);
         return mDb.insert(QueueContract.QueueEntry.TABLE_NAME, null, cv);
     }
 
